@@ -1,4 +1,4 @@
-from automatic.providers import oath2, oath1, openid, gaeopenid
+from authomatic.providers import oath2, oath1, openid, gaeopenid
 
 CONFIG = {
 	# Twitter
@@ -26,5 +26,5 @@ CONFIG = {
 	# Open Id
 	'oi':{
 		'class_': openid.OpenID,
-	}
+	},
 }
