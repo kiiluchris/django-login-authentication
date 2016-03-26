@@ -18,3 +18,7 @@ def home(request):
 				<input tpe = "submit" value = "Authentication With OpenID">
 			</form>
 		""")
+
+def login(request, provider_name):
+	response = HttpResponse()
+	result = authomatic.login(DjangoAdapter(request, response), provider_name)
