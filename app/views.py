@@ -53,13 +53,13 @@ def login(request, provider_name):
 					url = url.format(result.user.id)
 
 					# Accessing protected resources
-					access_resource = result.provider.access(url)
+					access_response = result.provider.access(url)
 
 					# GET function status
-					if access_resource.status == 200:
+					if access_response.status == 200:
 						# Parse response
-						statuses = access_resource.data.get('feed').get('data')
-						error = access_resource.data.get('error')
+						statuses = access_response.data.get('feed').get('data')
+						error = access_response.data.get('error')
 
 						if error:
 							response.write(u"If it wasn't for you. Error {}!".format(error))
@@ -75,3 +75,33 @@ def login(request, provider_name):
 					else:
 						response.write('If only I knew you I could fix you...<br/>')
 						response.write(u"Status: {}".format(response.status))
+
+				if result.provider.name == 'tw':
+					response.write("You are logged in with Twitter<br/>")
+
+					# 5 most recent tweets
+					 url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
+					 # Querying the tweets
+					 access_response = result.provider.access(url, {'count': 5})
+
+					  # Parse response.
+                    if access_response.status == 200:
+                        if type(access_response.data) is list:
+                            # Twitter returns the tweets as a JSON list.
+                            response.write('Your 5 most recent tweets:')
+                            for tweet in access_response.data:
+                                text = tweet.get('text')
+                                date = tweet.get('created_at')
+                                
+                                response.write(u'<h3>{0}</h3>'.format(text))
+                                response.write(u'Tweeted on: {0}'.format(date))
+                                
+                        elif response.data.get('errors'):
+                            response.write(u'Damn that error: {0}!'.\
+                                                format(response.data.get('errors')))
+                    else:
+                        response.write('Damn that unknown error!<br />')
+                        response.write(u'Status: {0}'.format(response.status))
+    
+    return response
+
