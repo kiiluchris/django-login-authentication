@@ -1,7 +1,7 @@
 from authomatic import Authomatic
 from authomatic.adapters import DjangoAdapter
 
-from config import CONFIG
+# from config import CONFIG
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -14,7 +14,7 @@ from django.template.context import RequestContext
 
 
 # Create your views here.
-authomatic = Authomatic(CONFIG, '4a4406bbba4a977e6eee28f9e8f27103')
+# authomatic = Authomatic(CONFIG, '4a4406bbba4a977e6eee28f9e8f27103')
 
 def index(request):
 	return HttpResponse("""
