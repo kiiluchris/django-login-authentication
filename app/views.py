@@ -1,27 +1,27 @@
 from authomatic import Authomatic
 from authomatic.adapters import DjangoAdapter
 
-from config import CONFIG
+# from config import CONFIG
 
 from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
-authomatic = Authomatic(CONFIG, "The clown is eternal, everlasting, undying.")
+# authomatic = Authomatic(CONFIG, "The clown is eternal, everlasting, undying.")
 
 def home(request):
 	return HttpResponse("""
 			Login with <a href = "login/fb">Facebook</a>.<br/>
 			Login with <a href = "login/tw">Twitter</a>.<br/>
 			<form action = "login/oi">
-				<input type = "text name = "id" value = "me.yahoo.com"/>
-				<input tpe = "submit" value = "Authentication With OpenID">
+				<input type = "text name = "id" placeholder = "me.yahoo.com"/>
+				<input tpe = "submit" placeholder = "Authentication With OpenID">
 			</form>
 		""")
 
 def login(request, provider_name):
 	response = HttpResponse()
-	result = authomatic.login(DjangoAdapter(request, response), provider_name)
+	# result = authomatic.login(DjangoAdapter(request, response), provider_name)
 
 	# Continue if result is received
 	if result:
@@ -80,28 +80,27 @@ def login(request, provider_name):
 					response.write("You are logged in with Twitter<br/>")
 
 					# 5 most recent tweets
-					 url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
-					 # Querying the tweets
-					 access_response = result.provider.access(url, {'count': 5})
+					url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
+					# Querying the tweets
+					access_response = result.provider.access(url, {'count': 5})
 
-					  # Parse response.
-                    if access_response.status == 200:
-                        if type(access_response.data) is list:
-                            # Twitter returns the tweets as a JSON list.
-                            response.write('Your 5 most recent tweets:')
-                            for tweet in access_response.data:
-                                text = tweet.get('text')
-                                date = tweet.get('created_at')
-                                
-                                response.write(u'<h3>{0}</h3>'.format(text))
-                                response.write(u'Tweeted on: {0}'.format(date))
-                                
-                        elif response.data.get('errors'):
-                            response.write(u'Damn that error: {0}!'.\
-                                                format(response.data.get('errors')))
-                    else:
-                        response.write('Damn that unknown error!<br />')
-                        response.write(u'Status: {0}'.format(response.status))
+					# Parse response.
+					if access_response.status == 200:
+						if type(access_response.data) is list:
+							# Twitter returns the tweets as a JSON list.
+							response.write('Your 5 most recent tweets:')
+							for tweet in access_response.data:
+								text = tweet.get('text')
+								date = tweet.get('created_at')
+
+								response.write(u'<h3>{0}</h3>'.format(text))
+								response.write(u'Tweeted on: {0}'.format(date))
+
+						elif response.data.get('errors'):
+							response.write(u'Damn that error: {0}!'.\
+							format(response.data.get('errors')))
+					else:
+						response.write('Damn that unknown error!<br />')
+						response.write(u'Status: {0}'.format(response.status))
     
-    return response
-
+	return response

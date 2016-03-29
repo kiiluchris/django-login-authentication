@@ -1,4 +1,4 @@
-from authomatic.providers import oath2, oath1, openid, gaeopenid
+from authomatic.providers import oath2, oath1, openid
 
 CONFIG = {
 	# Twitter
