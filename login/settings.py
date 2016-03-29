@@ -28,6 +28,42 @@ DEBUG = True
 
 # Application definition
 
+# Linkedin auth
+# SOCIAL_AUTH_LINKEDIN_KEY = '77pcykjfo9eng7'
+# SOCIAL_AUTH_LINKEDIN_SECRET = 'KURzCzu1T4TqiRBT'
+
+# # Add email to requested authorizations.
+# SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress', ...]
+# # Add the fields so they will be requested from linkedin.
+# SOCIAL_AUTH_LINKEDIN_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
+# # Arrange to add the fields to UserSocialAuth.extra_data
+# SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
+#                                    ('firstName', 'first_name'),
+#                                    ('lastName', 'last_name'),
+#                                    ('emailAddress', 'email_address'),
+#                                    ('headline', 'headline'),
+#                                    ('industry', 'industry')]
+
+# SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
+#     'social.backends.linkedin.LinkedinOath',
+# )
+
+# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/logged-in/'
+
+# SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
+
+# SOCIAL_AUTH_LOGIN_URL = '/login-url/'
+
+# SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/new-users-redirect-url/'
+
+# SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/new-association-redirect-url/'
+
+# SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/account-disconnected-redirect-url/'
+
+# SOCIAL_AUTH_INACTIVE_USER_URL = '/inactive-user/'
+
+# SOCIAL_AUTH_USER_MODEL = ''
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -36,7 +72,15 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'social.apps.django_app.default',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.linkedin.LinkedinOath',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
