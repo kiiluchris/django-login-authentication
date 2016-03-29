@@ -1,13 +1,13 @@
 from authomatic import Authomatic
 from authomatic.adapters import DjangoAdapter
 
-# from config import CONFIG
+from config import CONFIG
 
 from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
-# authomatic = Authomatic(CONFIG, "The clown is eternal, everlasting, undying.")
+authomatic = Authomatic(CONFIG, '4a4406bbba4a977e6eee28f9e8f27103')
 
 def home(request):
 	return HttpResponse("""
@@ -21,7 +21,7 @@ def home(request):
 
 def login(request, provider_name):
 	response = HttpResponse()
-	# result = authomatic.login(DjangoAdapter(request, response), provider_name)
+	result = authomatic.login(DjangoAdapter(request, response), provider_name)
 
 	# Continue if result is received
 	if result:
