@@ -1,43 +1,41 @@
-# Heroku Django Starter Template
+# Django Login Authentication
 
-An utterly fantastic project starter template for Django 1.9.
+## Technologies Used
 
-## Features
+Authomatic==0.1.0.post1
 
-- Production-ready configuration for Static Files, Database Settings, Gunicorn, etc.
-- Enhancements to Django's static file serving functionality via WhiteNoise
+Django==1.9.2
 
-## How to Use
+Pillow==3.1.1
 
-To use this project, follow these steps:
+PyJWT==1.4.0
 
-1. Create your working environment.
-2. Install Django (`$ pip install django`)
-3. Create a new project using this template
+argparse==1.2.1
 
-## Creating Your Project
+dj-database-url==0.4.0
 
-Using this template to create a new Django app is easy::
+feedparser==5.2.1
 
-    $ django-admin.py startproject --template=https://github.com/heroku/heroku-django-template/archive/master.zip --name=Procfile helloworld
+gunicorn==19.4.5
 
-You can replace ``helloworld`` with your desired project name.
+httplib2==0.9.2
 
-## Deployment to Heroku
+oauth2==1.9.0.post1
 
-    $ git init
-    $ git add -A
-    $ git commit -m "Initial commit"
+oauthlib==1.0.3
 
-    $ heroku create
-    $ git push heroku master
+psycopg2==2.6.1
 
-    $ heroku run python manage.py migrate
+python-openid==2.2.5
 
-See also, a [ready-made application](https://github.com/heroku/python-getting-started), ready to deploy.
+python-social-auth==0.2.14
 
-## Further Reading
+requests==2.9.1
 
-- [Gunicorn](https://warehouse.python.org/project/gunicorn/)
-- [WhiteNoise](https://warehouse.python.org/project/whitenoise/)
-- [dj-database-url](https://warehouse.python.org/project/dj-database-url/)
+requests-oauthlib==0.6.1
+
+six==1.10.0
+
+whitenoise==2.0.6
+
+wsgiref==0.1.2
