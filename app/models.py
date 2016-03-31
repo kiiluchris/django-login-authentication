@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 def save_profile(backend, user, response, *args, **kwargs):
-    if backend.name == 'facebook':
+    if backend.name == 'linkedin-oauth2':
         profile = user.get_profile()
         if profile is None:
             profile = Profile(user_id=user.id)

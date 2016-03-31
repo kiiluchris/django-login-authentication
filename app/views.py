@@ -27,12 +27,14 @@ def index(request):
 		""")
 
 def login(request):
-    return render_to_response('login.html', context=RequestContext(request))
+    context = RequestContext(request)
+    return render(request, 'login.html', context)
 
 
 @login_required(login_url='/')
-def home(request):
-    return render_to_response('home.html')
+def home(request):	
+    context = RequestContext(request)
+    return render(request, 'home.html', context)
 
 
 def logout(request):
