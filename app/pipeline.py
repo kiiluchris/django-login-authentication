@@ -24,26 +24,15 @@ def update_user_social_data(strategy, *args, **kwargs):
 
     user.full_name = full_name
 
-
-    if isinstance(backend, LinkedinOAuth):
-        if kwargs['response'].get('pictureUrl'):
-            image_name = 'linked_avatar_%s.jpg' % full_name
-            image_url = kwargs['response'].get['pictureUrl']
-            image_stream = urlopen(image_url)
-
+    if isinstance(backend, GoogleOAuth2):
+        if response.get('image') and response['image'].get('url'):
+            url = response['image'].get('url')
+            ext = url.split('.')[-1]
             user.avatar.save(
-                image_name,
-                ContentFile(image_stream.read()),
+               '{0}.{1}'.format('avatar', ext),
+               ContentFile(urllib2.urlopen(url).read()),
+               save=False
             )
-    # elif isinstance(backend, GoogleOAuth2):
-    #     if response.get('image') and response['image'].get('url'):
-    #         url = response['image'].get('url')
-    #         ext = url.split('.')[-1]
-    #         user.avatar.save(
-    #            '{0}.{1}'.format('avatar', ext),
-    #            ContentFile(urllib2.urlopen(url).read()),
-    #            save=False
-    #         )
     elif isinstance(backend, FacebookOAuth2):
         fbuid = kwargs['response']['id']
         image_name = 'fb_avatar_%s.jpg' % fbuid
@@ -64,5 +53,14 @@ def update_user_social_data(strategy, *args, **kwargs):
                 image_name,
                 ContentFile(image_stream.read()),
             )
-    
+    elif isinstance(backend, LinkedinOAuth):
+        if kwargs['response'].get('pictureUrl'):
+            image_name = 'linked_avatar_%s.jpg' % full_name
+            image_url = kwargs['response'].get['pictureUrl']
+            image_stream = urlopen(image_url)
+
+            user.avatar.save(
+                image_name,
+                ContentFile(image_stream.read()),
+            )
     user.save()

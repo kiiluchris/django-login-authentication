@@ -41,11 +41,6 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
 )
 
-AUTHENTICATION_BACKENDS = (
-    'social.backends.linkedin.LinkedinOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-)
-
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
