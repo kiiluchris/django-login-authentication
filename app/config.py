@@ -75,3 +75,6 @@ SOCIAL_AUTH_LINKEDIN_OAUTH2_EXTRA_DATA = [
     ('industry', 'industry'),
     ('public-profile-url', 'public_profile_url'),
 ]
+
+# Storing data fields
+FIELDS_STORED_IN_SESSION = ['key']

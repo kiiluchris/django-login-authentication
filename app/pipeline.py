@@ -16,7 +16,7 @@ def update_user_social_data(strategy, *args, **kwargs):
     ):
         full_name = kwargs['response'].get('name')
     elif (
-        isinstance(backend, LinkedinOAuth)
+        isinstance(backend, LinkedinOAuth2)
         or isinstance(backend, TwitterOAuth)
     ):
         if kwargs.get('details'):
@@ -53,7 +53,7 @@ def update_user_social_data(strategy, *args, **kwargs):
                 image_name,
                 ContentFile(image_stream.read()),
             )
-    elif isinstance(backend, LinkedinOAuth):
+    elif isinstance(backend, LinkedinOAuth2):
         if kwargs['response'].get('pictureUrl'):
             image_name = 'linked_avatar_%s.jpg' % full_name
             image_url = kwargs['response'].get['pictureUrl']
@@ -64,3 +64,5 @@ def update_user_social_data(strategy, *args, **kwargs):
                 ContentFile(image_stream.read()),
             )
     user.save()
+
+    return {"user": user}
