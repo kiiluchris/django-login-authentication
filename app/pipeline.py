@@ -65,4 +65,6 @@ def update_user_social_data(strategy, *args, **kwargs):
             )
     user.save()
 
+    print(user)
+
     return {"user": user}

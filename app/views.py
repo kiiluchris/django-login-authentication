@@ -19,7 +19,11 @@ from .forms import UserForm
 
 from .pipeline import update_user_social_data as user_data
 
-from social.apps.django_app.default.models import UserSocialAuth 
+from social.apps.django_app.default.models import UserSocialAuth
+
+import ast
+import unicodedata
+import simplejson
 
 
 
@@ -44,13 +48,17 @@ def home(request):
     return render(request, 'home.html', context)
 
 @login_required(login_url='/')
-def social_user_profile(request, id = None):
-	sUser = get_object_or_404(UserSocialAuth, id = id)
-	
-	print(sUser)
+def social_user_profile(request):
+	sUser = UserSocialAuth.objects.get(user= request.user)
+
+	profile_picture = sUser.extra_data['picture_url']
+
 	context = {
-		"first_name": user,
-	}
+		'profile_picture': profile_picture,
+		
+		}
+	
+	
 	return render(request, "test.html", context)
 
 
