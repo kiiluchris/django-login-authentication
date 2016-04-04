@@ -47,7 +47,7 @@ def home(request):
 def social_user_profile(request, id = None):
 	sUser = get_object_or_404(UserSocialAuth, id = id)
 	
-	print(sUser.user)
+	print(sUser)
 	context = {
 		"first_name": user,
 	}
