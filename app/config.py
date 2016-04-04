@@ -76,5 +76,11 @@ SOCIAL_AUTH_LINKEDIN_OAUTH2_EXTRA_DATA = [
     ('public-profile-url', 'public_profile_url'),
 ]
 
+# FB extra data
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'locale': 'ru_RU',
+  'fields': 'id, name, email, age_range, picture'
+}
+
 # Storing data fields
 FIELDS_STORED_IN_SESSION = ['key']
