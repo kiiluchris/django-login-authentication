@@ -1,3 +1,10 @@
+from social.backends.linkedin import LinkedinOAuth2
+from social.backends.facebook import FacebookOAuth2
+from social.backends.google import GoogleOAuth2
+from social.backends.twitter import TwitterOAuth
+
+
+
 def update_user_social_data(strategy, *args, **kwargs):
     """Set the name and avatar for a user only if is new.
     """

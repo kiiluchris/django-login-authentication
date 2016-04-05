@@ -3,7 +3,16 @@
 {% block content %}
 
 {% if user and not user.is_anonymous %}
-  <h3>Hello, {{ user.get_full_name }}!</h3>
+<p align="center">
+	<form name="jump" class="center">
+	<select onchange="location = this.options[this.selectedIndex].value;">
+		<option value="#">Select an user type</option>
+		<option value="{% url 'app:home' %}">Home</option>
+		<option value="{% url 'app:test' %}">Test</option>
+	</select>
+	<input type="button" onClick="location=document.jump.menu.options[document.jump.menu.selectedIndex].value;" value="GO">
+	</form>
+</p>
   <br>
   <a href="/logout">Logout</a>
 {% else %}
