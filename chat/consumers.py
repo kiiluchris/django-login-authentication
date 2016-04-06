@@ -14,6 +14,7 @@ from channels import Group
 # Connected to websocket.connect - connects service
 def ws_add(message):
 	Group("chat").add(message.reply_channel)
+	print "Connecting to WebSocket"
 
 # Connected to websocket.receive - allows message receipt
 def ws_message(message):
@@ -22,7 +23,9 @@ def ws_message(message):
 	Group("chat").send({
 			"text": "[user] %s" % message.content['text']
 		})
+	print "Sending message"
 
 # Connected to websocket.diconnect - disconnects service
 def ws_disconnect(message):
 	Group("chat").discard(message.reply_channel)
+	print "Disconnecting from WebSocket"

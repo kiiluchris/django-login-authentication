@@ -151,9 +151,13 @@ STATICFILES_DIRS = [
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+# Channel handling
 CHANNEL_LAYERS = {
-    "default":{
-        "BACKEND":"asgiref.inmemory.ChannelLayer",
-        "ROUTING":"chat.routing.channel_routing",
+    "default": {
+        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+        "ROUTING": "chat.routing.channel_routing",
     },
 }
