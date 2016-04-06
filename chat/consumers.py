@@ -1,8 +1,10 @@
-from django.shortcuts import render
-
 from django.http import HttpResponse
+
+from channels.handler import AsgiHandler
 # Create your views here.
-def main(request):
-	return HttpResponse("""
-			<h1>Chat page</h1>
-		""")
+def http_consumer(message):
+	# Standard HttpResponse - To access ASGI path attribute directly
+	response = HttpResponse("Hoya! You asked for this: %s" % message.content['path'])
+	# Encode response into message format (ASGI)
+	for chunk in AsgiHandler.encode_response(response):
+		message.reply_channel.send(chunk)
