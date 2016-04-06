@@ -8,5 +8,6 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('app.urls', namespace="app")),
+    url(r'^chat/', include('chat.urls', namespace="chat")),
     url('', include('social.apps.django_app.urls', namespace='social')),
 ]

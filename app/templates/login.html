@@ -9,6 +9,7 @@
 		<option value="#">Select an user type</option>
 		<option value="{% url 'app:home' %}">Home</option>
 		<option value="{% url 'app:test' %}">Test</option>
+		<option value="{% url 'chat:main' %}">Chat</option>
 	</select>
 	<input type="button" onClick="location=document.jump.menu.options[document.jump.menu.selectedIndex].value;" value="GO">
 	</form>

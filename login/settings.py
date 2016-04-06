@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app',
     'social.apps.django_app.default',
+    'chat',
+    'channels',
 )
 
 MIDDLEWARE_CLASSES = (
