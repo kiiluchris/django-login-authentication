@@ -8,7 +8,7 @@ $(function() {
 
     $("#chatform").on("submit", function(event) {
         var message = {
-            handle: $('#handle').val(),
+            handle: $('#handle').text(),
             message: $('#message').val(),
         }
         console.log("Sending message");

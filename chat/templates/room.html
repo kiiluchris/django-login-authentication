@@ -8,7 +8,8 @@
   </p>
   <p>
     <label for="handle">Your name:</label>
-    <input id="handle" type="text" placeholder="handle">
+    <!-- <input id="handle" type="text" placeholder="handle"> -->
+    <h4 id="handle">{{ request.user.username }}</h4>
   </p>
   <form id="chatform">
     <table id="chat">
