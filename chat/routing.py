@@ -12,13 +12,13 @@ http_routing = [
 	]
 
 chat_routing = [
-	route("websocket.connect", ws_connect, path=r'^(?P<label>[\w-]{,50})/$'),
+	route("websocket.connect", ws_connect),
 	route("websocket.receive", ws_message),
 	route("websocket.disconnect", ws_disconnect),
 	]
 
 
 channel_routing = [
-	include(chat_routing, path=r"^/chat"),
+	include(chat_routing),
 	include(http_routing),
 	]
