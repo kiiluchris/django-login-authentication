@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import random
+import string
 import dj_database_url
 from app.config import *
 
@@ -25,6 +27,9 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "90#(5@@ue@i^xl5(ab9)r0a72!s0&7*c3@*^4gy6p-yal*95ea"
 
+# Random generated secret key
+# SECRET_KEY = os.environ.get("SECRET_KEY", "".join(random.choice(string.printable) for i in range(40)))
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -39,8 +44,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app',
     'social.apps.django_app.default',
-    'chat',
     'channels',
+    'chat',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,11 +72,11 @@ TEMPLATES = (
             'context_processors': [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.core.context_processors.debug',
-                'django.core.context_processors.i18n',
-                'django.core.context_processors.media',
-                'django.core.context_processors.static',
-                'django.core.context_processors.tz',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
@@ -159,5 +164,28 @@ CHANNEL_LAYERS = {
             "hosts": [("localhost", 6379)],
         },
         "ROUTING": "chat.routing.channel_routing",
+    },
+}
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'INFO'
+        },
+        'chat': {
+            'handlers': ['console'],
+            'propagate': False,
+            'level': 'DEBUG',
+        },
     },
 }

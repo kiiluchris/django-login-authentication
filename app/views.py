@@ -38,14 +38,12 @@ def index(request):
 		""")
 
 def login(request):
-    context = RequestContext(request)
-    return render(request, 'login.html', context)
+    return render(request, 'login.html')
 
 
 @login_required(login_url='/')
 def home(request):	
-    context = RequestContext(request)
-    return render(request, 'home.html', context)
+    return render(request, 'home.html')
 
 @login_required(login_url='/')
 def social_user_profile(request):
