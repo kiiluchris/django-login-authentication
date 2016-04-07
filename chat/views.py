@@ -4,6 +4,7 @@ from django.db import transaction
 from django.shortcuts import render, redirect
 import haikunator
 from .models import Room
+from social.apps.django_app.default.models import UserSocialAuth
 
 def about(request):
     return render(request, "about.html")
@@ -34,7 +35,11 @@ def chat_room(request, label):
     # We want to show the last 50 messages, ordered most-recent-last
     messages = reversed(room.messages.order_by('-timestamp')[:50])
 
+    # Get current user object
+    sUser = UserSocialAuth.objects.get(user= request.user)
+
     return render(request, "room.html", {
         'room': room,
         'messages': messages,
+        'sUser':sUser,
     })
