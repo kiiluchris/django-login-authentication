@@ -3,19 +3,8 @@
 {% block content %}
 
 {% if user and not user.is_anonymous %}
-<p align="center">
-	<form name="jump" class="center">
-	<select onchange="location = this.options[this.selectedIndex].value;">
-		<option value="#">Select an user type</option>
-		<option value="{% url 'app:home' %}">Welcome if logged in with 3rd party</option>
-		<option value="{% url 'app:test' %}">Test for getting Linkedin profile pic</option>
-		<option value="{% url 'chat:new_room' %}">New room with random name</option>
-	</select>
-	<!-- <input type="button" onClick="location=document.jump.menu.options[document.jump.menu.selectedIndex].value;" value="GO"> -->
-	</form>
-</p>
-  <br>
-  <a href="/logout">Logout</a>
+	<a href="/logout">Logout</a>
+  
 {% else %}
   <p><a href="{% url 'social:begin' backend='linkedin-oauth2' %}?next={{ request.path }}" id="login">Login with Linkedin</a></p>
   <p><a href="{% url 'social:begin' backend='facebook' %}?next={{ request.path }}" id="login">Login with Facebook</a></p>
