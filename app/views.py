@@ -25,7 +25,7 @@ import ast
 import unicodedata
 import simplejson
 
-
+from .forms import RequestForm
 
 def index(request):
 	return HttpResponse("""
@@ -36,7 +36,8 @@ def index(request):
 				<input tpe = "submit" placeholder = "Authentication With OpenID">
 			</form>
 		""")
-
+		
+# Login redirect to new random chat
 def login(request):
 	if request.user.is_authenticated():
 		return redirect("/chat/new/")
