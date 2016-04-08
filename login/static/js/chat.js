@@ -21,17 +21,19 @@ $(function() {
         var chat = $("#chat");
         var ele = $('<tr></tr>');
 
-        ele.append(
-            $("<td></td>").text(data.timestamp)
-        );
-        ele.append(
-            $("<td></td>").text(data.handle)
-        );
-        ele.append(
-            $("<td></td>").text(data.message)
-        );
-        
-        chat.append(ele);
+        if(!data.message.trim()==""){
+            ele.append(
+                $("<td></td>").text(data.timestamp)
+            );
+            ele.append(
+                $("<td></td>").text(data.handle)
+            );
+            ele.append(
+                $("<td></td>").text(data.message)
+            );
+            
+            chat.append(ele);
+        }
     };
     $("#chatform").on("submit", function(event) {
         var message = {
