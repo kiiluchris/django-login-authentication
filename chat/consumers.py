@@ -66,7 +66,9 @@ def ws_message(message):
         m = room.messages.create(**data)
 
         # See above for the note about Group
-        Group('chat-'+label, channel_layer=message.channel_layer).send({'text': json.dumps(m.as_dict())})
+        Group('chat-'+label, channel_layer=message.channel_layer).send({
+            'text': json.dumps(m.as_dict()),
+            })
 
 @channel_session
 def ws_disconnect(message):
