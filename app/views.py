@@ -3,7 +3,7 @@ from authomatic.adapters import DjangoAdapter
 
 # from config import CONFIG
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 from django.shortcuts import render_to_response, redirect
@@ -38,7 +38,9 @@ def index(request):
 		""")
 
 def login(request):
-    return render(request, 'login.html')
+	if request.user.is_authenticated():
+		return redirect("/chat/new/")
+	return render(request, 'login.html')
 
 
 @login_required(login_url='/')
