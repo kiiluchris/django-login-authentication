@@ -20,6 +20,7 @@ $(function() {
         console.log(data)
         var chat = $("#chat");
         var ele = $('<tr></tr>');
+        
 
         if(!data.message.trim()==""){
             ele.append(
@@ -31,14 +32,15 @@ $(function() {
             ele.append(
                 $("<td></td>").text(data.message)
             );
-            
             chat.append(ele);
         }
+        
     };
     $("#chatform").on("submit", function(event) {
+        
         var message = {
             handle: $('#handle').text(),
-            message: $('#message').val(),
+            message: splitString($('#message').val(), 80),
         }
         console.log("Sending message");
         console.log(message);
@@ -46,5 +48,20 @@ $(function() {
         $("#message").val('').focus();
         return false;
     });
+    
+    function splitString (string, size) {
+    	var re = new RegExp('.{1,' + size + '}', 'g');
+    	var newString = "";
+        var strArray = string.match(re);
+        
+        if(strArray != null){
+            for(var count = 0; count < strArray.length; count++){
+                newString += strArray[count] + "\n";
+            }
+            return newString.trim();
+        } else{
+            return null;
+        }
+    }
     
 });
