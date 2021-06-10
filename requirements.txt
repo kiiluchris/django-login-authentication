@@ -1,5 +1,5 @@
 Authomatic==0.1.0.post1
-Django==1.9.5
+Django==2.2.24
 Pillow==3.1.1
 PyJWT==1.4.0
 Twisted==16.1.0
